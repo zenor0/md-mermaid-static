@@ -5,18 +5,18 @@ from rich.progress import Progress
 
 from .parser import MarkdownParser
 from .renderer import MermaidRenderer
-from .models import MermaidBlock
+from .models import MermaidBlock, CLIConfig
 
 console = Console()
 
 class MarkdownProcessor:
     """Markdown 处理器"""
     
-    def __init__(self, input_file: str, output_dir: str, enhance_svg: bool = False):
+    def __init__(self, input_file: str, cli_config: CLIConfig):
         self.input_file = Path(input_file)
-        self.output_dir = Path(output_dir)
-        self.enhance_svg = enhance_svg
-        self.renderer = MermaidRenderer(output_dir, enhance_svg)
+        self.output_dir = Path(cli_config.output_dir)
+        self.cli_config = cli_config
+        self.renderer = MermaidRenderer(cli_config.output_dir, cli_config)
         
     def process(self) -> Path:
         """处理 Markdown 文件"""
@@ -38,13 +38,12 @@ class MarkdownProcessor:
         # 渲染所有代码块
         with Progress() as progress:
             task = progress.add_task("[cyan]渲染图表...", total=len(blocks))
-            rendered_blocks = []
             
-            for i, block in enumerate(blocks):
-                output_path = self.renderer.render_block(block, i)
-                if output_path:
-                    rendered_blocks.append((block, output_path))
-                progress.update(task, advance=1)
+            # 并发或顺序处理所有代码块
+            rendered_blocks = self.renderer.render_blocks(blocks)
+            
+            # 更新进度条
+            progress.update(task, completed=len(blocks))
         
         # 更新 Markdown 内容
         new_content = self._replace_blocks(content, rendered_blocks)
@@ -61,6 +60,11 @@ class MarkdownProcessor:
         offset = 0
         
         for block, image_path in rendered_blocks:
+            # 检查图像路径是否为空
+            if image_path is None:
+                console.print(f"[yellow]警告: 第 {block.line_start} 行的图表渲染失败，保留原始代码块[/yellow]")
+                continue
+                
             # 计算相对路径
             rel_path = image_path.relative_to(self.output_dir)
             
@@ -70,10 +74,10 @@ class MarkdownProcessor:
             # 替换原始代码块
             start_idx = block.line_start - 1 + offset
             end_idx = block.line_end - 1 + offset
-            lines[start_idx:end_idx] = [image_ref]
+            lines[start_idx:end_idx + 1] = [image_ref]
             
             # 更新偏移量
-            offset += 1 - (end_idx - start_idx)
+            offset += 1 - (end_idx - start_idx + 1)
             
         return '\n'.join(lines)
         

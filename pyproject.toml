@@ -1,7 +1,7 @@
 [project]
 name = "md-mermaid-static"
-version = "0.1.0"
-description = "A CLI tool to convert Mermaid diagrams in Markdown to static images"
+version = "0.2.0"
+description = "A CLI tool to convert Mermaid diagrams in Markdown to static images with enhanced features"
 authors = [
     {name = "zenor0", email = "zenor@example.com"},
 ]
@@ -20,3 +20,8 @@ build-backend = "pdm.backend"
 
 [project.scripts]
 md-mermaid-static = "md_mermaid_static.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+]
