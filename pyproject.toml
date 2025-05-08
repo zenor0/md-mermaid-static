@@ -1,0 +1,22 @@
+[project]
+name = "md-mermaid-static"
+version = "0.1.0"
+description = "A CLI tool to convert Mermaid diagrams in Markdown to static images"
+authors = [
+    {name = "zenor0", email = "zenor@example.com"},
+]
+dependencies = [
+    "click>=8.1.7",
+    "pydantic>=2.5.2",
+    "rich>=13.7.0",
+    "pyyaml>=6.0.1",
+    "pymupdf>=1.23.7",
+]
+requires-python = ">=3.8"
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project.scripts]
+md-mermaid-static = "md_mermaid_static.cli:main"
