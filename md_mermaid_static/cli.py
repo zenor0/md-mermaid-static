@@ -1,117 +1,129 @@
 import click
 from pathlib import Path
-from rich.console import Console
 import os
-import multiprocessing
+import traceback
 
-from .processor import MarkdownProcessor
-from .models import CLIConfig, OutputFormat, Theme
+from .core.processor import MarkdownProcessor
+from .models import CLIConfig, OutputFormat, Theme, LogLevel
+from .utils.logger import setup_logging, logger, display_config
 
-console = Console()
 
 @click.command()
-@click.argument('input_file', type=click.Path(exists=True))
+@click.argument("input_file", type=click.Path(exists=True))
 @click.option(
-    '--output-dir', '-o',
+    "--output-dir",
+    "-o",
     type=click.Path(),
-    default='output',
-    help='输出目录路径'
+    default="output",
+    help="Output directory path",
 )
 @click.option(
-    '--output-format', '-e',
-    type=click.Choice(['svg', 'png', 'pdf']),
-    default='svg',
-    help='输出图片格式 (svg, png, pdf)'
+    "--output-format",
+    "-e",
+    type=click.Choice(["svg", "png", "pdf", "enhanced-svg"]),
+    default="svg",
+    help="Output image format (svg, png, pdf, enhanced-svg)",
 )
 @click.option(
-    '--theme', '-t',
-    type=click.Choice(['default', 'forest', 'dark', 'neutral']),
-    default='default',
-    help='Mermaid 主题'
+    "--theme",
+    "-t",
+    type=click.Choice(["default", "forest", "dark", "neutral"]),
+    default="default",
+    help="Mermaid theme",
 )
+@click.option("--width", "-w", type=int, default=None, help="Chart width (pixels)")
+@click.option("--height", "-H", type=int, default=None, help="Chart height (pixels)")
 @click.option(
-    '--width', '-w',
-    type=int,
-    default=800,
-    help='图表宽度（像素）'
-)
-@click.option(
-    '--height', '-H',
-    type=int,
-    default=600,
-    help='图表高度（像素）'
-)
-@click.option(
-    '--background-color', '-b',
+    "--background-color",
+    "-b",
     type=str,
-    default='white',
-    help='背景颜色（如transparent, red, #F0F0F0）'
+    default=None,
+    help="Background color (e.g., transparent, white, black, red, #F0F0F0)",
 )
+@click.option("--scale", "-s", type=float, default=None, help="Scale factor")
 @click.option(
-    '--scale', '-s',
-    type=float,
-    default=1.0,
-    help='缩放比例'
-)
-@click.option(
-    '--config-file', '-c',
+    "--config-file",
+    "-c",
     type=click.Path(exists=True),
-    help='Mermaid JSON配置文件路径'
+    help="Mermaid JSON config file path",
 )
 @click.option(
-    '--css-file', '-C',
-    type=click.Path(exists=True),
-    help='自定义CSS文件路径'
+    "--css-file", "-C", type=click.Path(exists=True), help="Custom CSS file path"
 )
+@click.option("--pdf-fit", "-f", is_flag=True, help="Scale PDF to fit chart size")
 @click.option(
-    '--pdf-fit', '-f',
+    "--concurrent",
+    "-p",
     is_flag=True,
-    help='将PDF缩放到适合图表大小'
+    help="Enable concurrent rendering to speed up processing",
 )
 @click.option(
-    '--concurrent', '-p',
-    is_flag=True,
-    help='启用并发渲染以加速处理'
-)
-@click.option(
-    '--max-workers', '-j',
+    "--max-workers",
+    "-j",
     type=int,
     default=0,
-    help='并发渲染的最大工作进程数（默认为CPU核心数）'
+    help="Maximum number of worker processes for concurrent rendering (default is CPU core count)",
 )
+@click.option(
+    "--debug", "-d", is_flag=True, help="Enable debug mode with detailed logs"
+)
+@click.option(
+    "--log-level",
+    "-L",
+    type=click.Choice(
+        ["debug", "info", "warning", "error", "critical"], case_sensitive=False
+    ),
+    default="info",
+    help="Log level",
+)
+@click.option("--log-file", "-l", type=click.Path(), help="Log file path")
+@click.option(
+    "--use-command",
+    type=click.Choice(["auto", "npx", "pnpx"]),
+    default="auto",
+    help="Specify whether to use npx or pnpx command (default is auto-detect)",
+)
+@click.version_option()
 def main(
-    input_file: str, 
-    output_dir: str, 
-    output_format: str, 
-    theme: str, 
-    width: int, 
+    input_file: str,
+    output_dir: str,
+    output_format: str,
+    theme: str,
+    width: int,
     height: int,
-    background_color: str, 
-    scale: float, 
-    config_file: str, 
-    css_file: str, 
+    background_color: str,
+    scale: float,
+    config_file: str,
+    css_file: str,
     pdf_fit: bool,
     concurrent: bool,
-    max_workers: int
+    max_workers: int,
+    debug: bool,
+    log_level: str,
+    log_file: str,
+    use_command: str,
 ):
-    """将 Markdown 文件中的 Mermaid 图表转换为静态图片。
-    
-    INPUT_FILE: 输入的 Markdown 文件路径
-    """
+    """Convert Mermaid code blocks in Markdown to static images."""
     try:
-        # 创建输出目录
-        output_path = Path(output_dir)
-        output_path.mkdir(parents=True, exist_ok=True)
-        
-        # 如果max_workers为0，使用CPU数量
+        # Setup logging
+        setup_logging(debug_mode=debug, log_file=log_file)
+
+        # Ensure output directory exists
+        Path(output_dir).mkdir(parents=True, exist_ok=True)
+
+        # Handle max_workers - ensure it's always an integer
         if max_workers <= 0:
             max_workers = os.cpu_count() or 4
-        
-        # 创建CLI配置
+
+        # If output format is enhanced-svg, set pdf_fit to True by default
+        if output_format == "enhanced-svg":
+            pdf_fit = True
+
+        # Create CLI config
         cli_config = CLIConfig(
             output_dir=output_dir,
             output_format=OutputFormat(output_format),
-            theme=Theme(theme),
+            theme=Theme(theme) if theme else None,
             width=width,
             height=height,
             background_color=background_color,
@@ -120,18 +132,39 @@ def main(
             css_file=css_file,
             pdf_fit=pdf_fit,
             concurrent=concurrent,
-            max_workers=max_workers
+            max_workers=max_workers,
+            debug=debug,
+            log_file=log_file,
+            log_level=LogLevel(log_level),
+            use_command=use_command,
         )
         
-        # 处理文件
+        # Set the global singleton instance
+        CLIConfig.set_instance(cli_config)
+
+        # Display config in debug mode
+        display_config(cli_config)
+
+        # Process file
         processor = MarkdownProcessor(input_file, cli_config)
         output_file = processor.process()
-        
-        console.print(f"[green]处理完成！输出文件：{output_file}[/green]")
-        
+
+        logger.info(f"Processing complete! Output file: {output_file}")
+
     except Exception as e:
-        console.print(f"[red]错误: {str(e)}[/red]")
+        if "logger" in locals():
+            logger.error(f"Error: {str(e)}", exc_info=debug)
+            if debug:
+                # Add full traceback for debugging
+                tb = traceback.format_exc()
+                logger.error(f"Traceback:\n{tb}")
+        else:
+            print(f"Error: {str(e)}")
+            if debug:
+                tb = traceback.format_exc()
+                print(f"Traceback:\n{tb}")
         raise click.Abort()
 
-if __name__ == '__main__':
-    main() 
+
+if __name__ == "__main__":
+    main()
