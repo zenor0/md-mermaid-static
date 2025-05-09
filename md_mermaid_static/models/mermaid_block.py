@@ -23,7 +23,7 @@ class MermaidBlock(BaseModel):
         """Get rendering options"""
         # Get global CLI config if available
         cli_config = CLIConfig.get_instance()
-        
+
         # Use CLI config for defaults when available
         default_theme = Theme.DEFAULT
         default_bg = None
@@ -33,7 +33,7 @@ class MermaidBlock(BaseModel):
         default_css = None
         default_config_file = None
         default_pdf_fit = False
-        
+
         # Override defaults with CLI config if available
         if cli_config:
             default_theme = cli_config.theme or default_theme
@@ -44,30 +44,30 @@ class MermaidBlock(BaseModel):
             default_css = cli_config.css_file or default_css
             default_config_file = cli_config.config_file or default_config_file
             default_pdf_fit = cli_config.pdf_fit or default_pdf_fit
-        
+
         # Check for custom theme
         custom_theme = self.config.custom_theme
         config_file, css_file = None, None
-        
+
         # If custom theme is specified, try to load theme files
         if custom_theme:
             # Import here to avoid circular imports
             from md_mermaid_static.utils.theme_manager import get_theme_manager
-            
+
             # Get theme manager and theme files
             if cli_config and cli_config.themes_dir:
                 theme_manager = get_theme_manager(Path(cli_config.themes_dir))
             else:
                 theme_manager = get_theme_manager()
-                
+
             config_file, css_file = theme_manager.get_theme_files(custom_theme)
-            
+
             # If theme files are found, they override the defaults
             if config_file:
                 default_config_file = str(config_file)
             if css_file:
                 default_css = str(css_file)
-        
+
         # Block config overrides CLI config when specified
         return MermaidRenderOptions(
             theme=self.config.render_theme or default_theme,

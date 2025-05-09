@@ -20,7 +20,9 @@ class MarkdownProcessor:
         # Store reference to CLI config, but also rely on singleton for consistency
         self.cli_config = cli_config
         # Pass singleton instance to renderer to ensure consistency
-        self.renderer = MermaidRenderer(cli_config.output_dir, CLIConfig.get_instance() or cli_config)
+        self.renderer = MermaidRenderer(
+            cli_config.output_dir, CLIConfig.get_instance() or cli_config
+        )
 
     def process(self) -> Path:
         """Process Markdown file"""

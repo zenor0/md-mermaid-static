@@ -48,7 +48,7 @@ class MarkdownParser:
             # Special handling for theme field name
             if normalized_key == "theme":
                 normalized_key = "render_theme"
-            
+
             # Handle custom theme (render-theme with string value that's not a standard theme)
             if normalized_key == "render_theme" and isinstance(value, str):
                 try:

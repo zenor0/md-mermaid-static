@@ -4,6 +4,7 @@ import tempfile
 from md_mermaid_static.core.processor import MarkdownProcessor
 from md_mermaid_static.models import MermaidBlock, MermaidConfig, CLIConfig
 
+
 @pytest.fixture
 def temp_dir():
     """创建临时目录"""
@@ -40,7 +41,9 @@ sequenceDiagram
 
 def test_processor_initialization(temp_dir, sample_md_file):
     """测试处理器初始化"""
-    processor = MarkdownProcessor(str(sample_md_file), CLIConfig(output_dir=str(temp_dir)))
+    processor = MarkdownProcessor(
+        str(sample_md_file), CLIConfig(output_dir=str(temp_dir))
+    )
     assert processor.input_file == sample_md_file
     assert processor.output_dir == temp_dir
 

@@ -10,7 +10,7 @@ from .enums import Theme, OutputFormat
 
 class MermaidConfig(BaseModel):
     """Configuration model for Mermaid diagrams"""
-    
+
     model_config = ConfigDict(extra="allow")
 
     caption: Optional[str] = None

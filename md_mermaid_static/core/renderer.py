@@ -1,6 +1,7 @@
 """
 Mermaid渲染器模块
 """
+
 import hashlib
 import logging
 import platform
@@ -19,6 +20,7 @@ from ..models.mermaid_config import MermaidRenderOptions
 from ..config.env import get_mermaid_cli_package
 
 logger = logging.getLogger(__name__)
+
 
 class MermaidRenderer:
     """Mermaid Chart Renderer"""
@@ -162,14 +164,14 @@ class MermaidRenderer:
 
             # Determine output format from CLI config
             output_format = self.cli_config.output_format
-            
+
             # Handle enhanced SVG mode (render to PDF first, then convert to SVG)
             actual_output_format = output_format
             if output_format == OutputFormat.ENHANCED_SVG:
                 logger.info("Using enhanced SVG mode: rendering via PDF conversion")
                 # Use PDF as intermediate format
                 actual_output_format = OutputFormat.PDF
-            
+
             # Temporary output file
             temp_output = Path(temp_dir) / f"output.{actual_output_format.value}"
 
@@ -185,7 +187,7 @@ class MermaidRenderer:
                 logger.debug(f"Executing render command: {' '.join(cmd)}")
                 # Print render options
                 logger.debug(
-                    f"Render options: {dict(filter(lambda x:x[1], render_options.model_dump().items()))}"
+                    f"Render options: {dict(filter(lambda x: x[1], render_options.model_dump().items()))}"
                 )
 
                 result = subprocess.run(cmd, capture_output=True, text=True)
@@ -204,25 +206,25 @@ class MermaidRenderer:
                     return None
 
                 # Final output file
-                final_output_ext = "svg" if output_format == OutputFormat.ENHANCED_SVG else output_format.value
-                final_output = (
-                    self.media_dir / f"mermaid_{md5_hash}.{final_output_ext}"
+                final_output_ext = (
+                    "svg"
+                    if output_format == OutputFormat.ENHANCED_SVG
+                    else output_format.value
                 )
+                final_output = self.media_dir / f"mermaid_{md5_hash}.{final_output_ext}"
 
                 # Handle enhanced SVG mode (PDF to SVG conversion)
                 if output_format == OutputFormat.ENHANCED_SVG:
                     logger.debug("Converting enhanced PDF to SVG")
                     self._convert_pdf_to_svg(temp_output, final_output)
                     return final_output
-                
+
                 # Handle PDF to other format conversion (if needed)
                 if (
                     actual_output_format == OutputFormat.PDF
                     and output_format != OutputFormat.PDF
                 ):
-                    logger.debug(
-                        f"Converting PDF to {output_format.value}"
-                    )
+                    logger.debug(f"Converting PDF to {output_format.value}")
                     self._convert_pdf_to_other_format(
                         temp_output, final_output, output_format
                     )

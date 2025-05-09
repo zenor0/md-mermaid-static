@@ -10,7 +10,7 @@ from .enums import OutputFormat, Theme, LogLevel
 
 class CLIConfig(BaseModel):
     """CLI global configuration"""
-    
+
     # Singleton instance
     _instance: ClassVar[Optional["CLIConfig"]] = None
 
@@ -31,12 +31,12 @@ class CLIConfig(BaseModel):
     log_level: LogLevel = LogLevel.INFO  # Log level
     use_command: str = "auto"  # Which command to use for mermaid-cli: auto, npx, pnpx
     themes_dir: Optional[str] = None  # Directory containing theme folders
-    
+
     @classmethod
     def set_instance(cls, instance: "CLIConfig") -> None:
         """Set global CLI config instance"""
         cls._instance = instance
-    
+
     @classmethod
     def get_instance(cls) -> Optional["CLIConfig"]:
         """Get global CLI config instance"""

@@ -145,7 +145,7 @@ def main(
             use_command=use_command,
             themes_dir=themes_dir,
         )
-        
+
         # Set the global singleton instance
         CLIConfig.set_instance(cli_config)
 

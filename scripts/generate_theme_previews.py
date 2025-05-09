@@ -2,6 +2,7 @@
 """
 生成Mermaid主题预览图像的脚本
 """
+
 import argparse
 import concurrent.futures
 import os
@@ -117,7 +118,7 @@ def generate_preview_for_theme(theme_name, theme_files, output_dir):
     flowchart_file, config_file, css_file = create_temp_mermaid_file(
         FLOWCHART_EXAMPLE, theme_name, theme_files
     )
-    flowchart_output = output_dir / f"flowchart_preview.svg"
+    flowchart_output = output_dir / "flowchart_preview.svg"
     render_mermaid(flowchart_file, str(flowchart_output), config_file, css_file)
     os.unlink(flowchart_file)
 
@@ -125,7 +126,7 @@ def generate_preview_for_theme(theme_name, theme_files, output_dir):
     sequence_file, config_file, css_file = create_temp_mermaid_file(
         SEQUENCE_EXAMPLE, theme_name, theme_files
     )
-    sequence_output = output_dir / f"sequence_preview.svg"
+    sequence_output = output_dir / "sequence_preview.svg"
     render_mermaid(sequence_file, str(sequence_output), config_file, css_file)
     os.unlink(sequence_file)
 
@@ -133,7 +134,7 @@ def generate_preview_for_theme(theme_name, theme_files, output_dir):
     class_file, config_file, css_file = create_temp_mermaid_file(
         CLASS_EXAMPLE, theme_name, theme_files
     )
-    class_output = output_dir / f"class_preview.svg"
+    class_output = output_dir / "class_preview.svg"
     render_mermaid(class_file, str(class_output), config_file, css_file)
     os.unlink(class_file)
 
@@ -141,7 +142,7 @@ def generate_preview_for_theme(theme_name, theme_files, output_dir):
     create_combined_preview(theme_name, output_dir)
 
     print(f"已完成 {theme_name} 主题的预览生成")
-    
+
     return {
         "theme": theme_name,
         "flowchart": flowchart_output,
@@ -233,20 +234,20 @@ def generate_all_previews(themes_dir, max_workers=None):
         return
 
     print(f"找到 {len(themes)} 个主题，开始并行生成预览...")
-    
+
     # 使用线程池并行处理
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         # 创建任务列表
         future_to_theme = {
             executor.submit(
-                generate_preview_for_theme, 
-                theme_name, 
-                theme_files, 
-                themes_dir / theme_name
+                generate_preview_for_theme,
+                theme_name,
+                theme_files,
+                themes_dir / theme_name,
             ): theme_name
             for theme_name, theme_files in themes.items()
         }
-        
+
         # 收集结果
         results = []
         for future in concurrent.futures.as_completed(future_to_theme):
@@ -257,7 +258,7 @@ def generate_all_previews(themes_dir, max_workers=None):
                 print(f"已成功生成 {theme_name} 的预览")
             except Exception as exc:
                 print(f"{theme_name} 生成预览时出错: {exc}")
-    
+
     print("所有预览生成完成！")
     return results
 
@@ -271,10 +272,7 @@ def main():
         help="主题目录的路径 (默认: ./themes)",
     )
     parser.add_argument(
-        "--workers",
-        type=int,
-        default=None,
-        help="并行工作的线程数 (默认: CPU核心数)"
+        "--workers", type=int, default=None, help="并行工作的线程数 (默认: CPU核心数)"
     )
 
     args = parser.parse_args()
