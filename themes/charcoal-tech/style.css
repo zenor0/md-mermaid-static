@@ -1,0 +1,74 @@
+/* Charcoal Tech Theme CSS */
+.mermaid {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  letter-spacing: 0.5px;
+}
+
+/* Node styling */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 2px;
+  filter: drop-shadow(0 2px 6px rgba(0, 172, 193, 0.4));
+}
+
+.node rect {
+  rx: 4px;
+  ry: 4px;
+}
+
+/* Edge styling */
+.edgeLabel {
+  background-color: rgba(38, 50, 56, 0.9);
+  /* padding: 4px 8px; */
+  border-radius: 3px;
+  color: #ECEFF1;
+  font-weight: 500;
+  /* border: 1px solid #455A64; */
+}
+
+.edgePath .path {
+  stroke-width: 2.5px;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 2px;
+  rx: 5px;
+  ry: 5px;
+  fill-opacity: 0.8;
+  stroke: #00ACC1;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: bold;
+  font-size: 1.3em;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  fill: #00ACC1;
+}
+
+/* Class diagram styling */
+.classLabel .label {
+  fill: #ECEFF1;
+  font-weight: bold;
+}
+
+.relation {
+  stroke: #00ACC1;
+  stroke-width: 2px;
+}
+
+/* Terminal-like cursor effect for tech theme */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.mermaid::after {
+  content: '|';
+  color: #00ACC1;
+  font-weight: bold;
+  animation: blink 1.2s infinite;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+} 

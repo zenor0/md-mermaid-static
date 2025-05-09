@@ -30,6 +30,7 @@ class CLIConfig(BaseModel):
     log_file: Optional[str] = None  # Log file path
     log_level: LogLevel = LogLevel.INFO  # Log level
     use_command: str = "auto"  # Which command to use for mermaid-cli: auto, npx, pnpx
+    themes_dir: Optional[str] = None  # Directory containing theme folders
     
     @classmethod
     def set_instance(cls, instance: "CLIConfig") -> None:

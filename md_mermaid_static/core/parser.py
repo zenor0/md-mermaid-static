@@ -48,15 +48,19 @@ class MarkdownParser:
             # Special handling for theme field name
             if normalized_key == "theme":
                 normalized_key = "render_theme"
-
-            # If it's a theme, ensure we use enum value
+            
+            # Handle custom theme (render-theme with string value that's not a standard theme)
             if normalized_key == "render_theme" and isinstance(value, str):
                 try:
+                    # Try to convert to standard theme enum
                     value = Theme(value.lower())
                 except ValueError:
-                    # If not a valid theme, use default theme
-                    logger.warning(f"Invalid theme value: {value}, using default theme")
-                    value = Theme.DEFAULT
+                    # If not a valid theme enum, it's a custom theme
+                    logger.debug(f"Using custom theme: {value}")
+                    # Store the original theme name in custom_theme
+                    normalized_config["custom_theme"] = value
+                    # Don't set render_theme for custom themes
+                    continue
 
             normalized_config[normalized_key] = value
 

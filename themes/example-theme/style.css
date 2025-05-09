@@ -1,0 +1,25 @@
+/* Custom CSS for example theme */
+.mermaid {
+  font-family: 'Fira Code', monospace;
+}
+
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 2px;
+}
+
+.edgeLabel {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+}
+
+.cluster rect {
+  stroke-dasharray: 5 5;
+  stroke-width: 2px;
+}
+
+/* Custom styling for diagram title */
+.mermaid .title {
+  font-weight: bold;
+  font-size: 1.2em;
+  fill: #ff6666;
+} 

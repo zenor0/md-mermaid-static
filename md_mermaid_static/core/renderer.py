@@ -1,28 +1,24 @@
 """
-Mermaid diagram renderer.
+Mermaid渲染器模块
 """
-
-import subprocess
-import tempfile
 import hashlib
-from pathlib import Path
-from typing import Optional, List, Tuple
-import pymupdf
-from concurrent.futures import ThreadPoolExecutor
 import logging
 import platform
+import subprocess
+import tempfile
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+from typing import List, Optional, Tuple
 
-from md_mermaid_static.models import (
-    MermaidBlock,
-    MermaidRenderOptions,
-    OutputFormat,
-    CLIConfig,
-)
-from md_mermaid_static.utils import (
-    logger,
-    display_render_command,
-)
+import pymupdf
 
+from ..models.cli_config import CLIConfig
+from ..models.enums import OutputFormat
+from ..models.mermaid_block import MermaidBlock
+from ..models.mermaid_config import MermaidRenderOptions
+from ..config.env import get_mermaid_cli_package
+
+logger = logging.getLogger(__name__)
 
 class MermaidRenderer:
     """Mermaid Chart Renderer"""
@@ -158,7 +154,8 @@ class MermaidRenderer:
             mermaid_file.write_text(block.content)
 
             # Generate MD5 hash as filename
-            md5_hash = hashlib.md5(block.content.encode("utf-8")).hexdigest()
+            mermaid_content = block.config.model_dump_json() + "\n" + block.content
+            md5_hash = hashlib.md5(mermaid_content.encode("utf-8")).hexdigest()
 
             # Get render options - now properly integrated with CLI config from within get_render_options
             render_options = block.get_render_options()
@@ -180,7 +177,8 @@ class MermaidRenderer:
             cmd = self._build_render_command(mermaid_file, temp_output, render_options)
 
             # Display render command in debug mode
-            display_render_command(cmd, index)
+            logger.debug(f"Render command: {' '.join(cmd)}")
+            # display_render_command(cmd, index)
 
             try:
                 # Execute render command
@@ -254,7 +252,7 @@ class MermaidRenderer:
         cli_cmd = self._get_mermaid_cli_cmd()
         cmd = [
             cli_cmd,
-            "@mermaid-js/mermaid-cli",
+            get_mermaid_cli_package(),
             "-i",
             str(input_file),
             "-o",

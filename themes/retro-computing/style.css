@@ -1,0 +1,81 @@
+/* Retro Computing Theme CSS */
+.mermaid {
+  font-family: 'VT323', 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+/* Node styling */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 2px;
+  filter: none;
+}
+
+.node rect {
+  rx: 0;
+  ry: 0;
+}
+
+/* Edge styling */
+.edgeLabel {
+  background-color: rgba(0, 0, 0, 0.9);
+  /* padding: 4px 6px; */
+  border-radius: 0;
+  color: #33FF33;
+  font-weight: normal;
+  /* border: 1px solid #33FF33; */
+  font-family: 'VT323', 'Courier New', monospace;
+}
+
+.edgePath .path {
+  stroke-width: 2px;
+  stroke-dasharray: 5 3;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 2px;
+  rx: 0;
+  ry: 0;
+  fill-opacity: 1;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: normal;
+  font-size: 1.5em;
+  font-family: 'VT323', 'Courier New', monospace;
+  fill: #33FF33;
+}
+
+/* CRT scan line effect */
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.mermaid {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.3) 50%);
+  background-size: 100% 4px;
+  animation: scanline 10s linear infinite;
+}
+
+/* Blinking cursor effect */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.mermaid::after {
+  content: '_';
+  color: #33FF33;
+  font-size: 20px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  animation: blink 1s step-start infinite;
+} 

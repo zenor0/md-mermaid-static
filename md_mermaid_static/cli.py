@@ -83,6 +83,11 @@ from .utils.logger import setup_logging, logger, display_config
     default="auto",
     help="Specify whether to use npx or pnpx command (default is auto-detect)",
 )
+@click.option(
+    "--themes-dir",
+    type=click.Path(exists=True),
+    help="Directory containing theme folders",
+)
 @click.version_option()
 def main(
     input_file: str,
@@ -102,6 +107,7 @@ def main(
     log_level: str,
     log_file: str,
     use_command: str,
+    themes_dir: str,
 ):
     """Convert Mermaid code blocks in Markdown to static images."""
     try:
@@ -137,6 +143,7 @@ def main(
             log_file=log_file,
             log_level=LogLevel(log_level),
             use_command=use_command,
+            themes_dir=themes_dir,
         )
         
         # Set the global singleton instance

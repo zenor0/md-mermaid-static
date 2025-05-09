@@ -1,0 +1,64 @@
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewBox="0 0 250 374.90625" style="max-width: 250px; background-color: transparent;" class="flowchart" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="100%" id="my-svg"><style>#my-svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#004D40;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#my-svg .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#my-svg .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#my-svg .error-icon{fill:#E0F2F1;}#my-svg .error-text{fill:#00695C;stroke:#00695C;}#my-svg .edge-thickness-normal{stroke-width:1px;}#my-svg .edge-thickness-thick{stroke-width:3.5px;}#my-svg .edge-pattern-solid{stroke-dasharray:0;}#my-svg .edge-thickness-invisible{stroke-width:0;fill:none;}#my-svg .edge-pattern-dashed{stroke-dasharray:3;}#my-svg .edge-pattern-dotted{stroke-dasharray:2;}#my-svg .marker{fill:#00796B;stroke:#00796B;}#my-svg .marker.cross{stroke:#00796B;}#my-svg svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#my-svg p{margin:0;}#my-svg .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#00695C;}#my-svg .cluster-label text{fill:#00695C;}#my-svg .cluster-label span{color:#00695C;}#my-svg .cluster-label span p{background-color:transparent;}#my-svg .label text,#my-svg span{fill:#00695C;color:#00695C;}#my-svg .node rect,#my-svg .node circle,#my-svg .node ellipse,#my-svg .node polygon,#my-svg .node path{fill:#E6FFFA;stroke:#00796B;stroke-width:1px;}#my-svg .rough-node .label text,#my-svg .node .label text,#my-svg .image-shape .label,#my-svg .icon-shape .label{text-anchor:middle;}#my-svg .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#my-svg .rough-node .label,#my-svg .node .label,#my-svg .image-shape .label,#my-svg .icon-shape .label{text-align:center;}#my-svg .node.clickable{cursor:pointer;}#my-svg .root .anchor path{fill:#00796B!important;stroke-width:0;stroke:#00796B;}#my-svg .arrowheadPath{fill:#0b0b0b;}#my-svg .edgePath .path{stroke:#00796B;stroke-width:2.0px;}#my-svg .flowchart-link{stroke:#00796B;fill:none;}#my-svg .edgeLabel{background-color:#B2DFDB;text-align:center;}#my-svg .edgeLabel p{background-color:#B2DFDB;}#my-svg .edgeLabel rect{opacity:0.5;background-color:#B2DFDB;fill:#B2DFDB;}#my-svg .labelBkg{background-color:rgba(178, 223, 219, 0.5);}#my-svg .cluster rect{fill:#C8E6C9;stroke:#A5D6A7;stroke-width:1px;}#my-svg .cluster text{fill:#00695C;}#my-svg .cluster span{color:#00695C;}#my-svg div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:#E0F2F1;border:1px solid #B2DFDB;border-radius:2px;pointer-events:none;z-index:100;}#my-svg .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#004D40;}#my-svg rect.text{fill:none;stroke-width:0;}#my-svg .icon-shape,#my-svg .image-shape{background-color:#B2DFDB;text-align:center;}#my-svg .icon-shape p,#my-svg .image-shape p{background-color:#B2DFDB;padding:2px;}#my-svg .icon-shape rect,#my-svg .image-shape rect{opacity:0.5;background-color:#B2DFDB;fill:#B2DFDB;}#my-svg :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="5" viewBox="0 0 10 10" class="marker flowchart-v2" id="my-svg_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"/></marker><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="4.5" viewBox="0 0 10 10" class="marker flowchart-v2" id="my-svg_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"/></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="11" viewBox="0 0 10 10" class="marker flowchart-v2" id="my-svg_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"/></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="-1" viewBox="0 0 10 10" class="marker flowchart-v2" id="my-svg_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"/></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="12" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="my-svg_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"/></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="-1" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="my-svg_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"/></marker><g class="root"><g class="clusters"/><g class="edgePaths"><path marker-end="url(#my-svg_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M111,62L111,66.167C111,70.333,111,78.667,111.07,86.417C111.141,94.167,111.281,101.334,111.351,104.917L111.422,108.501"/><path marker-end="url(#my-svg_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_C_0" d="M85.224,213.13L77.686,223.593C70.149,234.055,55.075,254.981,48.744,270.959C42.413,286.937,44.826,297.968,46.032,303.483L47.239,308.999"/><path marker-end="url(#my-svg_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_0" d="M140.583,210.323L149.819,221.254C159.055,232.184,177.528,254.045,186.764,270.476C196,286.906,196,297.906,196,303.406L196,308.906"/><path marker-end="url(#my-svg_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_B_0" d="M78.047,312.906L83.539,306.74C89.031,300.573,100.016,288.24,105.582,276.656C111.148,265.073,111.297,254.239,111.371,248.823L111.445,243.406"/></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g transform="translate(40, 275.90625)" class="edgeLabel"><g transform="translate(-8, -12)" class="label"><foreignObject height="24" width="16"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>是</p></span></div></foreignObject></g></g><g transform="translate(196, 275.90625)" class="edgeLabel"><g transform="translate(-8, -12)" class="label"><foreignObject height="24" width="16"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>否</p></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(111, 35)" id="flowchart-A-0" class="node default"><rect height="54" width="92" y="-27" x="-46" style="" class="basic label-container"/><g transform="translate(-16, -12)" style="" class="label"><rect/><foreignObject height="24" width="32"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>开始</p></span></div></foreignObject></g></g><g transform="translate(111, 175.453125)" id="flowchart-B-1" class="node default"><polygon transform="translate(-63.453125,63.453125)" class="label-container" points="63.453125,0 126.90625,-63.453125 63.453125,-126.90625 0,-63.453125"/><g transform="translate(-36.453125, -12)" style="" class="label"><rect/><foreignObject height="24" width="72.90625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>是否继续?</p></span></div></foreignObject></g></g><g transform="translate(54, 339.90625)" id="flowchart-C-3" class="node default"><rect height="54" width="92" y="-27" x="-46" style="" class="basic label-container"/><g transform="translate(-16, -12)" style="" class="label"><rect/><foreignObject height="24" width="32"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>处理</p></span></div></foreignObject></g></g><g transform="translate(196, 339.90625)" id="flowchart-D-5" class="node default"><rect height="54" width="92" y="-27" x="-46" style="" class="basic label-container"/><g transform="translate(-16, -12)" style="" class="label"><rect/><foreignObject height="24" width="32"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>结束</p></span></div></foreignObject></g></g></g></g></g><style>/* Minty Fresh Theme CSS */
+.mermaid {
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+/* Node styling */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 2px;
+  filter: drop-shadow(0 2px 4px rgba(0, 121, 107, 0.2));
+}
+
+.node rect {
+  rx: 12px;
+  ry: 12px;
+}
+
+/* Edge styling */
+.edgeLabel {
+  background-color: rgba(230, 255, 250, 0.95);
+  /* padding: 6px 10px; */
+  border-radius: 8px;
+  color: #00695C;
+  font-weight: 500;
+  /* border: 1px solid #A7FFEB; */
+}
+
+.edgePath .path {
+  stroke-width: 2px;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 1.5px;
+  rx: 16px;
+  ry: 16px;
+  fill-opacity: 0.7;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: bold;
+  font-size: 1.4em;
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  fill: #00796B;
+}
+
+/* Actor styling for sequence diagrams */
+.actor {
+  stroke-width: 1.5px;
+  fill: #B2DFDB;
+}
+
+.messageText {
+  font-size: 1.1em;
+  font-weight: 500;
+  fill: #004D40;
+}
+
+/* Hover effects */
+.node:hover rect, .node:hover circle {
+  filter: drop-shadow(0 4px 8px rgba(0, 121, 107, 0.4));
+  transition: all 0.3s ease;
+} </style></svg>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sunset-glow - 主题预览</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .preview-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .preview-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-top: 0;
+            color: #444;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .preview-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>sunset-glow 主题预览</h1>
+    
+    <div class="preview-container">
+        <div class="preview-item">
+            <h2>流程图</h2>
+            <img src="flowchart_preview.svg" alt="流程图预览" class="preview-image">
+        </div>
+        
+        <div class="preview-item">
+            <h2>序列图</h2>
+            <img src="sequence_preview.svg" alt="序列图预览" class="preview-image">
+        </div>
+        
+        <div class="preview-item">
+            <h2>类图</h2>
+            <img src="class_preview.svg" alt="类图预览" class="preview-image">
+        </div>
+    </div>
+</body>
+</html>

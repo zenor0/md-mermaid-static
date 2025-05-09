@@ -12,6 +12,11 @@ from .logger import (
     display_summary,
 )
 
+from .theme_manager import (
+    ThemeManager,
+    get_theme_manager,
+)
+
 __all__ = [
     "logger",
     "setup_logging",
@@ -21,4 +26,6 @@ __all__ = [
     "display_render_command",
     "display_render_result",
     "display_summary",
+    "ThemeManager",
+    "get_theme_manager",
 ]

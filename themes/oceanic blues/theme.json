@@ -1,0 +1,16 @@
+{
+    "theme": "default",
+    "themeVariables": {
+        "primaryColor": "#0077be",
+        "primaryTextColor": "#ffffff",
+        "primaryBorderColor": "#00a3e0",
+        "lineColor": "#00a3e0",
+        "secondaryColor": "#004466",
+        "tertiaryColor": "#e0f7ff",
+        "mainBkg": "#e0f7ff",
+        "nodeBorder": "#00a3e0",
+        "clusterBkg": "#f0f9ff",
+        "clusterBorder": "#00a3e0",
+        "titleColor": "#0077be"
+    }
+}

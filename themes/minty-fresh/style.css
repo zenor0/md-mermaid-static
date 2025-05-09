@@ -1,0 +1,64 @@
+/* Minty Fresh Theme CSS */
+.mermaid {
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+/* Node styling */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 2px;
+  filter: drop-shadow(0 2px 4px rgba(0, 121, 107, 0.2));
+}
+
+.node rect {
+  rx: 12px;
+  ry: 12px;
+}
+
+/* Edge styling */
+.edgeLabel {
+  background-color: rgba(230, 255, 250, 0.95);
+  /* padding: 6px 10px; */
+  border-radius: 8px;
+  color: #00695C;
+  font-weight: 500;
+  /* border: 1px solid #A7FFEB; */
+}
+
+.edgePath .path {
+  stroke-width: 2px;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 1.5px;
+  rx: 16px;
+  ry: 16px;
+  fill-opacity: 0.7;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: bold;
+  font-size: 1.4em;
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  fill: #00796B;
+}
+
+/* Actor styling for sequence diagrams */
+.actor {
+  stroke-width: 1.5px;
+  fill: #B2DFDB;
+}
+
+.messageText {
+  font-size: 1.1em;
+  font-weight: 500;
+  fill: #004D40;
+}
+
+/* Hover effects */
+.node:hover rect, .node:hover circle {
+  filter: drop-shadow(0 4px 8px rgba(0, 121, 107, 0.4));
+  transition: all 0.3s ease;
+} 

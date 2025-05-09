@@ -1,0 +1,47 @@
+/* Deep Sea Blue Theme CSS */
+.mermaid {
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+/* Node styling */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 2px;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
+}
+
+.edgelabel {
+  background-color: rgba(42, 79, 140, 0.95);
+  text-align: center;
+  color: #000000;
+}
+
+.edgePath .path {
+  stroke-width: 2.5px;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 2px;
+  rx: 6px;
+  ry: 6px;
+  fill-opacity: 0.8;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: bold;
+  font-size: 1.4em;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  fill: #69A2FF;
+}
+
+/* Animation for flowchart */
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+.node rect, .node circle {
+  animation: pulse 3s ease-in-out infinite;
+} 

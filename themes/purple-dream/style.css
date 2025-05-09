@@ -1,0 +1,75 @@
+/* Purple Dream Theme CSS */
+.mermaid {
+  font-family: 'Quicksand', 'Arial', sans-serif;
+}
+
+/* Node styling with glow effect */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 8px rgba(171, 71, 188, 0.6));
+}
+
+.node rect {
+  rx: 15px;
+  ry: 15px;
+}
+
+/* Edge styling with gradient */
+.edgeLabel {
+  background-color: rgba(106, 27, 154, 0.8);
+  /* padding: 6px 10px; */
+  border-radius: 12px;
+  color: #F3E5F5;
+  font-weight: 500;
+  box-shadow: 0 0 10px rgba(206, 147, 216, 0.5);
+}
+
+.edgePath .path {
+  stroke-width: 3px;
+  stroke-linecap: round;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 2px;
+  rx: 20px;
+  ry: 20px;
+  fill-opacity: 0.7;
+  stroke: #CE93D8;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: 'Quicksand', 'Arial', sans-serif;
+  fill: #CE93D8;
+  text-shadow: 0 0 5px rgba(206, 147, 216, 0.5);
+}
+
+/* Starry background animation */
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+.mermaid::before {
+  content: '✦';
+  color: #CE93D8;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+.mermaid::after {
+  content: '✦';
+  color: #CE93D8;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 14px;
+  animation: twinkle 2s infinite ease-in-out;
+} 

@@ -20,6 +20,7 @@ class MermaidConfig(BaseModel):
     height: Optional[int] = None
     scale: Optional[float] = None
     css_file: Optional[str] = None
+    custom_theme: Optional[str] = None  # Custom theme name for theme directory lookup
 
 
 class MermaidRenderOptions(BaseModel):
@@ -35,3 +36,4 @@ class MermaidRenderOptions(BaseModel):
     config_file: Optional[str] = None
     pdf_fit: bool = False
     svg_id: Optional[str] = None
+    custom_theme: Optional[str] = None  # Custom theme name

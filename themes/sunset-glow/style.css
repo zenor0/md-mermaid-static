@@ -1,0 +1,58 @@
+/* Sunset Glow Theme CSS */
+.mermaid {
+  font-family: 'Open Sans', 'Helvetica', sans-serif;
+}
+
+/* Node styling */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 2.5px;
+  filter: drop-shadow(3px 3px 4px rgba(150, 50, 0, 0.3));
+}
+
+/* Edge styling */
+.edgeLabel {
+  background-color: rgba(255, 245, 173, 0.9);
+  /* padding: 5px 8px; */
+  border-radius: 6px;
+  color: #402500;
+  font-weight: 600;
+  /* border: 1px solid #FFCD33; */
+}
+
+.edgePath .path {
+  stroke-width: 2.5px;
+  stroke-linecap: round;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 2px;
+  rx: 10px;
+  ry: 10px;
+  fill-opacity: 0.85;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: 'Open Sans', 'Helvetica', sans-serif;
+  fill: #D45500;
+}
+
+/* Gradient background for nodes */
+.node rect {
+  fill: linear-gradient(to bottom, #FF7B00, #E04400);
+}
+
+/* Animation for edges */
+@keyframes dash {
+  to {
+    stroke-dashoffset: 20;
+  }
+}
+
+.edgePath .path {
+  stroke-dasharray: 5 3;
+  animation: dash 1.5s linear infinite;
+} 
