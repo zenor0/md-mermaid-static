@@ -1,0 +1,106 @@
+/* Hand-drawn Comic Theme CSS */
+.mermaid {
+  font-family: 'Bangers', 'Comic Sans MS', cursive;
+  letter-spacing: 0.8px;
+}
+
+/* Create comic-like effect */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 3px;
+  filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.2));
+}
+
+/* Rounded corners for comic-like feel */
+.node rect {
+  rx: 8px;
+  ry: 8px;
+  transform: rotate(-1deg);
+}
+
+/* Edge styling */
+.edgeLabel {
+  background-color: white;
+  /* padding: 5px 10px; */
+  border-radius: 10px;
+  color: #333333;
+  font-weight: bold;
+  font-size: 1em;
+  /* Add comic-like border */
+  /* border: 3px solid #FF5722; */
+  /* transform: rotate(1deg); */
+}
+
+.edgePath .path {
+  stroke-width: 3px;
+  /* No dash for comic look */
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 3px;
+  rx: 15px;
+  ry: 15px;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: bold;
+  font-size: 1.8em;
+  font-family: 'Bangers', 'Comic Sans MS', cursive;
+  fill: #FF5722;
+  letter-spacing: 1.5px;
+}
+
+/* Add comic-like speech bubbles */
+.node.default > .label {
+  position: relative;
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 6px 0 -3px rgba(0,0,0,0.1);
+}
+
+/* Add "POW" and "BAM" decorative elements */
+.mermaid::before {
+  content: "POW!";
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-family: 'Bangers', 'Impact', sans-serif;
+  font-size: 24px;
+  color: #FF5722;
+  transform: rotate(15deg);
+  text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.mermaid::after {
+  content: "BAM!";
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  font-family: 'Bangers', 'Impact', sans-serif;
+  font-size: 24px;
+  color: #FBC02D;
+  transform: rotate(-10deg);
+  text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+/* Colorful hover effect for nodes */
+.node:hover rect, .node:hover circle {
+  fill: #FFF59D;
+  transition: fill 0.3s ease;
+}
+
+/* Sound effect for edges */
+.edgePath .path:hover::before {
+  content: "ZOOM!";
+  position: absolute;
+  font-family: 'Bangers', 'Impact', sans-serif;
+  font-size: 14px;
+  color: #FF5722;
+  opacity: 0.8;
+} 

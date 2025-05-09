@@ -56,6 +56,12 @@ md-mermaid-static examples/theme-test.md --themes-dir themes
 - `retro-computing`：复古计算机主题，模拟老式终端显示器的外观
 - `oceanic-blues`：海洋蓝色主题，使用蓝色调和水波纹效果
 
+### 手绘风格主题
+- `hand-drawn-sketch`：手绘素描风格，使用黑白色调和素描线条效果
+- `hand-drawn-colorful`：手绘彩色风格，使用多彩的颜色和不规则的线条
+- `hand-drawn-chalk`：粉笔板风格，模拟黑板和粉笔的效果
+- `hand-drawn-comic`：卡通漫画风格，使用明亮的颜色和漫画对话框效果
+
 ## 创建自己的主题
 
 要创建自己的主题，只需创建一个新的文件夹，并添加`theme.json`和`style.css`文件。可以参考示例主题的文件结构和内容。
@@ -70,6 +76,20 @@ md-mermaid-static examples/theme-test.md --themes-dir themes
     "primaryTextColor": "#颜色代码",
     "lineColor": "#颜色代码",
     // 其他颜色变量...
+  }
+}
+```
+
+### 添加手绘风格
+
+要创建手绘风格的主题，在theme.json中添加`"look": "handDrawn"`：
+
+```json
+{
+  "theme": "base",
+  "look": "handDrawn",
+  "themeVariables": {
+    // 颜色变量...
   }
 }
 ```

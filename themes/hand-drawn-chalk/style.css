@@ -1,0 +1,104 @@
+/* Hand-drawn Chalk Theme CSS */
+.mermaid {
+  font-family: 'Indie Flower', 'Marker Felt', cursive;
+  letter-spacing: 1px;
+}
+
+/* Create chalk-like effect */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 3px;
+  stroke-opacity: 0.9;
+  /* No filter shadow for chalkboard look */
+}
+
+/* Rough edges for chalk-like feel */
+.node rect {
+  /* No rx/ry for chalkboard look - keep corners sharp */
+  transform: rotate(-0.5deg);
+}
+
+/* Edge styling */
+.edgeLabel {
+  background-color: rgba(27, 27, 27, 0.8); /* Dark background */
+  /* padding: 4px 8px; */
+  border-radius: 0;
+  color: #F0F0F0;
+  font-weight: normal;
+  font-size: 1em;
+  /* Add a chalk-like border */
+  /* border: 1px solid rgba(238, 238, 238, 0.6); */
+}
+
+.edgePath .path {
+  stroke-width: 3px;
+  /* Make lines rough for chalk look */
+  stroke-dasharray: 8 2;
+  stroke-opacity: 0.8;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 2px;
+  stroke-dasharray: 10 5;
+  stroke-opacity: 0.8;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: normal;
+  font-size: 1.5em;
+  font-family: 'Indie Flower', 'Marker Felt', cursive;
+  fill: #FFFFFF;
+  opacity: 0.9;
+  text-decoration: underline;
+}
+
+/* Additional chalk-like effects */
+/* Add random opacity variations for chalk dust effect */
+.node:nth-child(odd) rect, .node:nth-child(odd) circle {
+  opacity: 0.85;
+  transform: rotate(-0.8deg);
+}
+
+.node:nth-child(even) rect, .node:nth-child(even) circle {
+  opacity: 0.95;
+  transform: rotate(0.6deg);
+}
+
+/* Chalk-like text */
+.nodeLabel, .edgeLabel, .cluster-label {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Custom background effect */
+.mermaid {
+  position: relative;
+}
+
+.mermaid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(60, 60, 60, 0.2) 0%, rgba(27, 27, 27, 0) 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Chalk dust particles */
+.mermaid::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.1;
+} 

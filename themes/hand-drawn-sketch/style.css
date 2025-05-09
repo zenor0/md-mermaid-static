@@ -1,0 +1,73 @@
+/* Hand-drawn Sketch Theme CSS */
+.mermaid {
+  font-family: 'Architects Daughter', 'Comic Sans MS', cursive;
+  letter-spacing: 0.5px;
+}
+
+/* Enhance the hand-drawn look with additional styling */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 1.5px;
+  /* No filter shadow for sketch look */
+}
+
+/* Slightly uneven edges for more hand-drawn feel */
+.node rect {
+  /* No rx/ry for sketch look - keep corners sharp */
+  transform: rotate(0.2deg);
+}
+
+/* Edge styling */
+.edgeLabel {
+  background-color: rgba(255, 255, 255, 0.8);
+  /* padding: 4px 8px; */
+  border-radius: 0;
+  color: #333333;
+  font-weight: normal;
+  font-size: 0.95em;
+  /* Add a subtle border for sketch effect */
+  /* border: 1px dashed #888888; */
+}
+
+.edgePath .path {
+  stroke-width: 1.5px;
+  /* Make lines slightly irregular for sketch look */
+  stroke-dasharray: 1 0.2;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 1.5px;
+  stroke-dasharray: 5 2;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: normal;
+  font-size: 1.3em;
+  font-family: 'Architects Daughter', 'Comic Sans MS', cursive;
+  fill: #333333;
+}
+
+/* Additional hand-drawn touches */
+/* Add slight rotation to various elements for more organic feel */
+.node:nth-child(odd) rect, .node:nth-child(odd) circle {
+  transform: rotate(-0.3deg);
+}
+
+.node:nth-child(even) rect, .node:nth-child(even) circle {
+  transform: rotate(0.3deg);
+}
+
+/* Add a subtle "sketchy" border to images */
+.node img {
+  border: 2px dashed #888888;
+}
+
+/* Class diagram specific styles */
+.classLabel .label {
+  font-size: 0.95em;
+}
+
+.relation {
+  stroke-dasharray: 3 1;
+} 

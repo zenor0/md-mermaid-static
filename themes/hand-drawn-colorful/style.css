@@ -1,0 +1,91 @@
+/* Hand-drawn Colorful Theme CSS */
+.mermaid {
+  font-family: 'Kalam', 'Gloria Hallelujah', cursive;
+  letter-spacing: 0.4px;
+}
+
+/* Enhance the hand-drawn look with additional styling */
+.node rect, .node circle, .node ellipse, .node polygon, .node path {
+  stroke-width: 2px;
+  filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.15));
+}
+
+/* Rounded corners for more playful look */
+.node rect {
+  rx: 6px;
+  ry: 6px;
+  transform: rotate(0.5deg);
+}
+
+/* Edge styling */
+.edgeLabel {
+  background-color: rgba(255, 255, 255, 0.9);
+  /* padding: 5px 8px; */
+  border-radius: 10px;
+  color: #333333;
+  font-weight: bold;
+  font-size: 0.9em;
+  /* Add a colorful border */
+  /* border: 2px solid #F0A868; */
+}
+
+.edgePath .path {
+  stroke-width: 2.5px;
+  /* Make lines slightly wavy for hand-drawn look */
+  stroke-dasharray: 5 2;
+}
+
+/* Cluster styling */
+.cluster rect {
+  stroke-width: 2px;
+  rx: 10px;
+  ry: 10px;
+  stroke-dasharray: 7 3;
+}
+
+/* Title styling */
+.mermaid .title {
+  font-weight: bold;
+  font-size: 1.4em;
+  font-family: 'Kalam', 'Gloria Hallelujah', cursive;
+  fill: #4273DA;
+  text-decoration: underline wavy #F0A868;
+}
+
+/* Additional hand-drawn touches */
+/* Add slight rotation and scale variations for more organic feel */
+.node:nth-child(3n+1) rect, .node:nth-child(3n+1) circle {
+  transform: rotate(-1deg) scale(1.02);
+}
+
+.node:nth-child(3n+2) rect, .node:nth-child(3n+2) circle {
+  transform: rotate(0.7deg) scale(0.99);
+}
+
+.node:nth-child(3n) rect, .node:nth-child(3n) circle {
+  transform: rotate(-0.4deg) scale(1.01);
+}
+
+/* Add colorful "sketchy" border to images */
+.node img {
+  border: 3px dotted #68F090;
+  border-radius: 5px;
+}
+
+/* Actor styling for sequence diagrams */
+.actor {
+  stroke-width: 2px;
+  fill: #F0E8FF;
+}
+
+/* Colorful animation for edges */
+@keyframes colorShift {
+  0% { stroke: #4273DA; }
+  33% { stroke: #D98C42; }
+  66% { stroke: #42D98C; }
+  100% { stroke: #4273DA; }
+}
+
+.flowchart-link {
+  animation: colorShift 10s infinite;
+} 
