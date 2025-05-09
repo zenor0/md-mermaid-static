@@ -3,6 +3,7 @@
 生成主题预览图库的脚本。
 
 此脚本会生成一个HTML页面，展示所有主题的预览图像。
+假设所有主题的预览SVG和HTML已经由Makefile生成。
 """
 
 import os
@@ -27,6 +28,26 @@ def generate_theme_gallery(themes_dir: Path, output_file: Path):
         return False
 
     print(f"找到 {len(themes)} 个主题，开始生成图库...")
+
+    # 预览文件检查标志
+    all_previews_exist = True
+    
+    # 检查所有主题的预览文件是否存在
+    for theme_name, theme_files in themes.items():
+        theme_dir = themes_dir / theme_name
+        flowchart_preview = theme_dir / "flowchart_preview.svg"
+        preview_html = theme_dir / "preview.html"
+        
+        # 如果任何一个预览文件不存在，设置标志为False
+        if not flowchart_preview.exists() or not preview_html.exists():
+            print(f"警告: {theme_name} 主题没有所有必要的预览文件")
+            print(f"  - 流程图预览: {'存在' if flowchart_preview.exists() else '缺失'}")
+            print(f"  - HTML预览: {'存在' if preview_html.exists() else '缺失'}")
+            all_previews_exist = False
+
+    if not all_previews_exist:
+        print("有主题缺少预览文件，请先运行 make previews 生成所有预览")
+        return False
 
     # 创建HTML内容
     html_content = """<!DOCTYPE html>
@@ -109,13 +130,6 @@ def generate_theme_gallery(themes_dir: Path, output_file: Path):
         theme_dir = themes_dir / theme_name
         flowchart_preview = theme_dir / "flowchart_preview.svg"
         preview_html = theme_dir / "preview.html"
-
-        # 检查预览图像是否存在
-        if not flowchart_preview.exists():
-            print(
-                f"警告: {theme_name} 主题没有预览图像，请先运行 generate_theme_previews.py"
-            )
-            continue
 
         # 获取主题配置信息
         theme_info = "自定义主题"

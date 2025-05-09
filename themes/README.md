@@ -112,10 +112,17 @@ md-mermaid-static examples/theme-test.md --themes-dir themes
 
 ## 生成主题预览
 
-可以使用预览生成脚本为所有主题生成预览图像：
+你可以使用项目根目录中的Makefile自动生成所有主题的预览图像：
 
 ```bash
-python scripts/generate_theme_previews.py
+# 生成所有主题的所有预览
+make previews
+
+# 生成主题图库HTML
+make gallery
+
+# 生成所有内容（预览和图库）
+make all
 ```
 
-这将在每个主题文件夹中生成预览图像和HTML预览文件。详细信息请参阅 `scripts/README.md`。 
+详细的使用说明请查看 `scripts/README.md` 文件。 
