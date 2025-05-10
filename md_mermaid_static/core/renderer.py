@@ -261,8 +261,9 @@ class MermaidRenderer:
             str(output_file),
         ]
 
-        # Add theme
-        if options.theme:
+        # Add theme - only if it's a built-in theme
+        # (custom themes are handled via config file and CSS)
+        if options.theme and not options.custom_theme:
             cmd.extend(["-t", options.theme.value])
 
         # Add dimensions
@@ -280,12 +281,18 @@ class MermaidRenderer:
             config_path = Path(options.config_file)
             if config_path.exists():
                 cmd.extend(["-c", str(config_path)])
+                logger.debug(f"Using config file: {config_path}")
+            else:
+                logger.warning(f"Config file not found: {config_path}")
 
         # Add CSS file
         if options.css_file:
             css_path = Path(options.css_file)
             if css_path.exists():
                 cmd.extend(["-C", str(css_path)])
+                logger.debug(f"Using CSS file: {css_path}")
+            else:
+                logger.warning(f"CSS file not found: {css_path}")
 
         # Add scale factor
         if options.scale:

@@ -19,6 +19,7 @@ class CLIConfig(BaseModel):
     concurrent: bool = False
     max_workers: Optional[int] = 4
     theme: Optional[Theme] = Theme.DEFAULT
+    custom_theme: Optional[str] = None  # Custom theme name when not a built-in theme
     width: Optional[int] = None
     height: Optional[int] = None
     background_color: Optional[str] = None

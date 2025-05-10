@@ -13,6 +13,7 @@ dependencies = [
     "pymupdf>=1.23.7",
     "pytest>=8.3.5",
     "python-dotenv>=1.0.1",
+    "importlib_resources>=5.0.0",
 ]
 requires-python = ">=3.8"
 
@@ -27,3 +28,8 @@ md-mermaid-static = "md_mermaid_static.cli:main"
 dev = [
     "pytest>=7.4.0",
 ]
+
+[tool.pdm.build]
+includes = ["themes"]
+package-dir = "."
+source-includes = ["themes/**/*.json", "themes/**/*.css", "themes/**/*.md"]

@@ -31,13 +31,13 @@ def generate_theme_gallery(themes_dir: Path, output_file: Path):
 
     # 预览文件检查标志
     all_previews_exist = True
-    
+
     # 检查所有主题的预览文件是否存在
     for theme_name, theme_files in themes.items():
         theme_dir = themes_dir / theme_name
         flowchart_preview = theme_dir / "flowchart_preview.svg"
         preview_html = theme_dir / "preview.html"
-        
+
         # 如果任何一个预览文件不存在，设置标志为False
         if not flowchart_preview.exists() or not preview_html.exists():
             print(f"警告: {theme_name} 主题没有所有必要的预览文件")

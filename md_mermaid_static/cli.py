@@ -27,9 +27,9 @@ from .utils.logger import setup_logging, logger, display_config
 @click.option(
     "--theme",
     "-t",
-    type=click.Choice(["default", "forest", "dark", "neutral"]),
+    type=str,
     default="default",
-    help="Mermaid theme",
+    help="Mermaid theme (built-in: default, forest, dark, neutral, or custom theme name)",
 )
 @click.option("--width", "-w", type=int, default=None, help="Chart width (pixels)")
 @click.option("--height", "-H", type=int, default=None, help="Chart height (pixels)")
@@ -125,11 +125,41 @@ def main(
         if output_format == "enhanced-svg":
             pdf_fit = True
 
+        # Handle theme validation and custom themes
+        theme_obj = None
+        try:
+            # Try as built-in theme first
+            theme_obj = Theme(theme)
+        except ValueError:
+            # Not a built-in theme, check if it's a custom theme
+            from .utils.theme_manager import get_theme_manager
+
+            theme_manager = get_theme_manager(Path(themes_dir) if themes_dir else None)
+            if theme_manager.theme_exists(theme):
+                # Custom theme exists, will be handled by get_render_options
+                logger.info(f"Using custom theme: {theme}")
+                # theme_obj stays None, will be handled as custom_theme
+            else:
+                # Theme doesn't exist, fall back to default
+                logger.warning(
+                    f"Theme '{theme}' not found. Falling back to default theme. "
+                    f"Available built-in themes: {', '.join([t.value for t in Theme])}"
+                )
+                if theme_manager.themes_cache:
+                    logger.warning(
+                        f"Available custom themes: {', '.join(theme_manager.themes_cache.keys())}"
+                    )
+                theme = "default"
+                theme_obj = Theme.DEFAULT
+
         # Create CLI config
         cli_config = CLIConfig(
             output_dir=output_dir,
             output_format=OutputFormat(output_format),
-            theme=Theme(theme) if theme else None,
+            theme=theme_obj,
+            custom_theme=None
+            if theme_obj
+            else theme,  # Set custom_theme if not a built-in theme
             width=width,
             height=height,
             background_color=background_color,

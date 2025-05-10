@@ -17,12 +17,12 @@ def generate_html_preview(theme_dir):
     """为主题生成HTML预览"""
     theme_dir = Path(theme_dir)
     theme_name = theme_dir.name
-    
+
     # 检查SVG预览是否存在
     flowchart_preview = theme_dir / "flowchart_preview.svg"
     sequence_preview = theme_dir / "sequence_preview.svg"
     class_preview = theme_dir / "class_preview.svg"
-    
+
     missing_files = []
     if not flowchart_preview.exists():
         missing_files.append("flowchart_preview.svg")
@@ -30,12 +30,12 @@ def generate_html_preview(theme_dir):
         missing_files.append("sequence_preview.svg")
     if not class_preview.exists():
         missing_files.append("class_preview.svg")
-    
+
     if missing_files:
         print(f"错误: 主题 {theme_name} 缺少以下预览文件: {', '.join(missing_files)}")
         print("请先运行generate_single_preview.py生成所有必要的预览文件")
         return False
-    
+
     # 创建HTML内容
     html_content = f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -117,15 +117,10 @@ def generate_html_preview(theme_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="为Mermaid主题生成HTML预览")
-    parser.add_argument(
-        "--theme-dir",
-        type=str,
-        required=True,
-        help="主题目录路径"
-    )
+    parser.add_argument("--theme-dir", type=str, required=True, help="主题目录路径")
 
     args = parser.parse_args()
-    
+
     theme_dir = Path(args.theme_dir)
     if not theme_dir.exists():
         print(f"错误: 主题目录 {theme_dir} 不存在")
@@ -138,4 +133,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main()) 
+    sys.exit(main())

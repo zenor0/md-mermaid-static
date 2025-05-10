@@ -52,7 +52,7 @@ classDiagram
     }
     Animal <|-- Dog
     Animal <|-- Cat
-"""
+""",
 }
 
 # 预览图像的宽度和高度
@@ -110,39 +110,41 @@ def generate_single_preview(theme_dir, chart_type):
     """为主题生成指定类型的预览图像"""
     theme_dir = Path(theme_dir)
     theme_name = theme_dir.name
-    
+
     # 检查主题文件是否存在
     config_file = theme_dir / "theme.json"
     css_file = theme_dir / "style.css"
-    
+
     if not config_file.exists():
         print(f"错误: 未找到主题配置文件 {config_file}")
         return False
-        
+
     if not css_file.exists():
         print(f"错误: 未找到主题样式文件 {css_file}")
         return False
-    
+
     # 检查图表类型是否有效
     if chart_type not in CHART_EXAMPLES:
-        print(f"错误: 无效的图表类型 {chart_type}，有效类型: {', '.join(CHART_EXAMPLES.keys())}")
+        print(
+            f"错误: 无效的图表类型 {chart_type}，有效类型: {', '.join(CHART_EXAMPLES.keys())}"
+        )
         return False
-    
+
     # 获取图表内容
     chart_content = CHART_EXAMPLES[chart_type]
-    
+
     # 创建临时文件
     temp_file = create_temp_mermaid_file(chart_content)
-    
+
     # 输出文件
     output_file = theme_dir / f"{chart_type}_preview.svg"
-    
+
     # 渲染图表
     success = render_mermaid(temp_file, str(output_file), config_file, css_file)
-    
+
     # 删除临时文件
     os.unlink(temp_file)
-    
+
     if success:
         print(f"成功生成 {theme_name} 主题的 {chart_type} 预览")
         return True
@@ -153,21 +155,16 @@ def generate_single_preview(theme_dir, chart_type):
 
 def main():
     parser = argparse.ArgumentParser(description="为Mermaid主题生成单个预览图像")
-    parser.add_argument(
-        "--theme-dir",
-        type=str,
-        required=True,
-        help="主题目录路径"
-    )
+    parser.add_argument("--theme-dir", type=str, required=True, help="主题目录路径")
     parser.add_argument(
         "--type",
         choices=["flowchart", "sequence", "class"],
         required=True,
-        help="预览类型: flowchart, sequence, class"
+        help="预览类型: flowchart, sequence, class",
     )
 
     args = parser.parse_args()
-    
+
     if not Path(args.theme_dir).exists():
         print(f"错误: 主题目录 {args.theme_dir} 不存在")
         return 1
@@ -179,4 +176,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main()) 
+    sys.exit(main())

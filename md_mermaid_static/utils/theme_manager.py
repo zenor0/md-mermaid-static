@@ -5,6 +5,8 @@ Theme management utilities for md-mermaid-static.
 from pathlib import Path
 from typing import Optional, Dict, Tuple
 import os
+import importlib.resources
+import sys
 
 from md_mermaid_static.utils.logger import logger
 
@@ -22,10 +24,43 @@ class ThemeManager:
         Initialize the theme manager.
 
         Args:
-            themes_dir: Path to the themes directory. If None, uses the default location.
+            themes_dir: Path to the themes directory. If None, uses the default locations.
         """
-        # Default themes directory is "themes" in the current working directory
-        self.themes_dir = themes_dir or Path("themes")
+        # If themes_dir is explicitly provided, use it
+        if themes_dir:
+            self.themes_dir = themes_dir
+        else:
+            # Otherwise, try to find themes in various locations
+            # Check if running from installed package
+            try:
+                # For Python 3.9+
+                if sys.version_info >= (3, 9):
+                    # Try to find the themes directory in the package
+                    with importlib.resources.files("md_mermaid_static").joinpath(
+                        "../themes"
+                    ) as path:
+                        if path.exists():
+                            self.themes_dir = path
+                        else:
+                            # Fall back to current directory
+                            self.themes_dir = Path("themes")
+                else:
+                    # For Python 3.8 compatibility
+                    import importlib_resources
+
+                    package_root = str(
+                        importlib_resources.files("md_mermaid_static")
+                    ).rsplit("md_mermaid_static", 1)[0]
+                    themes_path = Path(package_root) / "themes"
+                    if themes_path.exists():
+                        self.themes_dir = themes_path
+                    else:
+                        # Fall back to current directory
+                        self.themes_dir = Path("themes")
+            except (ImportError, ModuleNotFoundError):
+                # Fall back to current directory
+                self.themes_dir = Path("themes")
+
         self.themes_cache: Dict[str, Dict[str, Path]] = {}
         self._load_themes()
 

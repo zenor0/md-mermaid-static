@@ -33,6 +33,7 @@ class MermaidBlock(BaseModel):
         default_css = None
         default_config_file = None
         default_pdf_fit = False
+        custom_theme = None
 
         # Override defaults with CLI config if available
         if cli_config:
@@ -44,9 +45,11 @@ class MermaidBlock(BaseModel):
             default_css = cli_config.css_file or default_css
             default_config_file = cli_config.config_file or default_config_file
             default_pdf_fit = cli_config.pdf_fit or default_pdf_fit
+            # Use CLI custom theme if available
+            custom_theme = cli_config.custom_theme
 
-        # Check for custom theme
-        custom_theme = self.config.custom_theme
+        # Block-level custom theme overrides CLI-level custom theme
+        custom_theme = self.config.custom_theme or custom_theme
         config_file, css_file = None, None
 
         # If custom theme is specified, try to load theme files

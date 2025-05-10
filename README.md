@@ -1,107 +1,150 @@
 # MD-Mermaid-Static
 
-一个命令行工具，用于将 Markdown 文件中的 Mermaid 图表转换为静态图片。
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub issues](https://img.shields.io/github/issues/zenor0/md-mermaid-static)](https://github.com/zenor0/md-mermaid-static/issues)
 
-## 功能特点
+A tool for converting Mermaid diagrams in Markdown files to static images.
 
-- 支持解析 Markdown 文件中的 Mermaid 代码块
-- 支持 YAML frontmatter 配置
-- 支持多种图表主题和样式定制
-- 支持多种输出格式（SVG、PNG、PDF）
-- 支持并发渲染以加速处理
-- 完整支持 mermaid-cli 参数传递
-- 友好的命令行界面和进度显示
+Initially designed to solve the problem of Typst not properly rendering text in SVG files exported by Mermaid.
 
-## 安装
+*[中文文档](README_zh.md)*
 
-确保你的系统已安装 Python 3.8 或更高版本，并且安装了 Node.js 环境。
+## ✨ Features
+
+- 🔍 Parse Mermaid code blocks in Markdown files
+- ⚙️ Support YAML frontmatter configuration to set diagram names and other custom settings
+- 🎨 Support multiple diagram themes and style customization
+- 🖼️ Support various output formats (SVG, PNG, PDF)
+- ⚡ Support concurrent rendering for faster processing
+- 🔧 Complete support for mermaid-cli parameter passing
+- 🖥️ User-friendly command line interface with progress display
+
+## 📋 Table of Contents
+
+- [Installation](#-installation)
+- [Prerequisites](#-prerequisites)
+- [Usage](#-usage)
+- [Command Line Options](#-command-line-options)
+- [Mermaid Code Block Configuration](#-mermaid-code-block-configuration)
+- [Theme Configuration](#-theme-configuration)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+## 📥 Installation
+
+> ![note]
+> 
+> The project is not yet published on PyPI and can only be installed locally from source.
 
 ```bash
-pip install md-mermaid-static
+# Install from source
+git clone https://github.com/zenor0/md-mermaid-static.git
+cd md-mermaid-static
+pip install -e .
 ```
 
-## 使用方法
+## 🔧 Prerequisites
 
-### 基本用法
+> ![note]
+> 
+> The program has been developed and tested on Ubuntu 22.04 (WSL) and has not been tested in a Windows environment. If you encounter any issues, please submit an [Issue](https://github.com/zenor0/md-mermaid-static/issues).
+
+Before running, make sure that `pnpm` or `npm` is installed on your system, as the JavaScript runtime is needed to render Mermaid diagrams.
+
+### Installing dependencies with uv
+
+```bash
+uv sync
+```
+
+### Installing with pip
+
+```bash
+pip install -e .
+```
+
+## 🚀 Usage
+
+### Basic Usage
 
 ```bash
 md-mermaid-static input.md -o output_dir
 ```
 
-### 指定输出格式
+### Specifying Output Format
 
 ```bash
-# 输出 SVG 格式
+# Output SVG format
 md-mermaid-static input.md -o output_dir -e svg
 
-# 输出 PNG 格式
+# Output PNG format
 md-mermaid-static input.md -o output_dir -e png
 
-# 输出 PDF 格式
+# Output PDF format
 md-mermaid-static input.md -o output_dir -e pdf
 ```
 
-### 使用不同主题
+### Using Different Themes
 
 ```bash
 md-mermaid-static input.md -o output_dir -t forest
 ```
 
-### 设置图表尺寸和背景颜色
+### Setting Diagram Size and Background Color
 
 ```bash
 md-mermaid-static input.md -o output_dir -w 1200 -H 900 -b "#f0f0f0"
 ```
 
-### 并发处理加速
+### Concurrent Processing to Speed Up
 
 ```bash
-# 开启并发处理
+# Enable concurrent processing
 md-mermaid-static input.md -o output_dir -p
 
-# 指定最大工作进程数
+# Specify maximum number of worker processes
 md-mermaid-static input.md -o output_dir -p -j 8
 ```
 
-### 使用自定义配置和样式
+### Using Custom Configuration and Styles
 
 ```bash
-# 使用自定义配置文件
+# Use custom configuration file
 md-mermaid-static input.md -o output_dir -c my_config.json
 
-# 使用自定义 CSS 文件
+# Use custom CSS file
 md-mermaid-static input.md -o output_dir -C my_style.css
 ```
 
-## 所有命令行选项
+## 📝 Command Line Options
 
 ```
-选项:
-  --output-dir, -o TEXT           输出目录路径
+Options:
+  --output-dir, -o TEXT           Output directory path
   --output-format, -e [svg|png|pdf]
-                                  输出图片格式
+                                  Output image format
   --theme, -t [default|forest|dark|neutral]
-                                  Mermaid 主题
-  --width, -w INTEGER             图表宽度（像素）
-  --height, -H INTEGER            图表高度（像素）
-  --background-color, -b TEXT     背景颜色
-  --scale, -s FLOAT               缩放比例
-  --config-file, -c PATH          Mermaid JSON配置文件路径
-  --css-file, -C PATH             自定义CSS文件路径
-  --pdf-fit, -f                   将PDF缩放到适合图表大小
-  --concurrent, -p                启用并发渲染以加速处理
-  --max-workers, -j INTEGER       并发渲染的最大工作进程数
-  --help                          显示帮助信息并退出
+                                  Mermaid theme
+  --width, -w INTEGER             Diagram width (pixels)
+  --height, -H INTEGER            Diagram height (pixels)
+  --background-color, -b TEXT     Background color
+  --scale, -s FLOAT               Scale factor
+  --config-file, -c PATH          Path to Mermaid JSON configuration file
+  --css-file, -C PATH             Path to custom CSS file
+  --pdf-fit, -f                   Scale PDF to fit diagram size
+  --concurrent, -p                Enable concurrent rendering for faster processing
+  --max-workers, -j INTEGER       Maximum number of worker processes for concurrent rendering
+  --help                          Show help message and exit
 ```
 
-### Mermaid 代码块配置
+## 📊 Mermaid Code Block Configuration
 
-在 Mermaid 代码块中，你可以添加 YAML frontmatter 来配置单个图表的渲染选项：
+In Mermaid code blocks within Markdown files, you can add YAML frontmatter to configure rendering options for individual diagrams:
 
 ```markdown
 ```mermaid
 ---
-caption: 这是图表标题
+caption: This is a diagram title
 render_theme: forest
 width: 1000
 height: 800
@@ -109,13 +152,13 @@ background_color: "#f0f0f0"
 scale: 1.2
 ---
 graph TD
-    A[开始] --> B[结束]
+    A[Start] --> B[End]
 ```
 ```
 
-## 主题配置
+## 🎨 Theme Configuration
 
-主题文件夹结构：
+Theme folder structure:
 
 ```
 themes/
@@ -124,15 +167,16 @@ themes/
       └── style.css
 ```
 
-## 依赖
+## 🤝 Contributing
 
-- click
-- pydantic
-- rich
-- pyyaml
-- pymupdf
-- @mermaid-js/mermaid-cli (需要 Node.js 环境)
+Contributions to the project are welcome! Here are some ways you can contribute:
 
-## 许可证
+1. Submit bug reports or feature requests
+2. Submit pull requests to fix issues or add new functionality
+3. Improve documentation or add examples
+4. Share the project with others
 
-MIT
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE)
+
