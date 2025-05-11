@@ -34,4 +34,4 @@ dev = [
 [tool.pdm.build]
 includes = ["themes", "src"]
 package-dir = "src"
-source-includes = ["themes/**/*.json", "themes/**/*.css", "themes/**/*.md"]
+source-includes = ["themes/**/*.json", "themes/**/*.css", "themes/**/*.md", "themes/**/*.html"]
