@@ -16,6 +16,8 @@ dependencies = [
     "importlib_resources>=5.0.0",
 ]
 requires-python = ">=3.8"
+readme = "README.md"
+license = {text = "MIT"}
 
 [build-system]
 requires = ["pdm-backend"]
@@ -30,6 +32,6 @@ dev = [
 ]
 
 [tool.pdm.build]
-includes = ["themes"]
-package-dir = "."
+includes = ["themes", "src"]
+package-dir = "src"
 source-includes = ["themes/**/*.json", "themes/**/*.css", "themes/**/*.md"]

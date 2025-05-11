@@ -13,7 +13,8 @@ from pathlib import Path
 import json
 
 # 添加项目根目录到路径，以便导入项目模块
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(project_root, "src"))
 
 from md_mermaid_static.utils.theme_manager import get_theme_manager
 

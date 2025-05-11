@@ -5,7 +5,7 @@
 
 将 Markdown 文件中的 Mermaid 图表转换为静态图片的工具。
 
-设计之初，是为了解决 Typst 不能正确渲染 Mermaid 默认导出的 SVG 中的文字部分的问题。
+设计之初，是为了解决 Powerpoint/Typst 不能正确渲染 Mermaid 默认导出的 SVG 中的文字部分的问题。
 
 ## ✨ 功能特点
 

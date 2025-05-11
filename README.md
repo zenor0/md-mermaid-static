@@ -5,7 +5,7 @@
 
 A tool for converting Mermaid diagrams in Markdown files to static images.
 
-Initially designed to solve the problem of Typst not properly rendering text in SVG files exported by Mermaid.
+Initially designed to solve the problem of Powerpoint/Typst not properly rendering text in SVG files exported by Mermaid.
 
 *[中文文档](README_zh.md)*
 
