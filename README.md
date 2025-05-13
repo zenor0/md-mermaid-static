@@ -32,8 +32,7 @@ Initially designed to solve the problem of Powerpoint/Typst not properly renderi
 
 ## 📥 Installation
 
-> ![note]
-> 
+> [!NOTE]
 > The project is not yet published on PyPI and can only be installed locally from source.
 
 ```bash
@@ -45,8 +44,7 @@ pip install -e .
 
 ## 🔧 Prerequisites
 
-> ![note]
-> 
+> [!NOTE]
 > The program has been developed and tested on Ubuntu 22.04 (WSL) and has not been tested in a Windows environment. If you encounter any issues, please submit an [Issue](https://github.com/zenor0/md-mermaid-static/issues).
 
 Before running, make sure that `pnpm` or `npm` is installed on your system, as the JavaScript runtime is needed to render Mermaid diagrams.
@@ -141,7 +139,7 @@ Options:
 
 In Mermaid code blocks within Markdown files, you can add YAML frontmatter to configure rendering options for individual diagrams:
 
-```markdown
+````markdown
 ```mermaid
 ---
 caption: This is a diagram title
@@ -154,7 +152,7 @@ scale: 1.2
 graph TD
     A[Start] --> B[End]
 ```
-```
+````
 
 ## 🎨 Theme Configuration
 
